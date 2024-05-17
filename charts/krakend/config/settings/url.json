@@ -1,0 +1,20 @@
+{
+    "ams": "http://unicorn-ams-service.platform",
+    "ims": "http://unicorn-ims-service.platform",
+    "ats": "http://unicorn-ats-service.platform",
+    "pms": "http://unicorn-pms-service.platform",
+    "pmsmnt": "http://unicorn-pms-mnt-service.platform",
+    "prv": "http://unicorn-prv-service.platform",
+    "uds": "http://unicorn-uds-service.studio",
+    "rts": "http://unicorn-rts-service.runtime",
+    "rtsmgmt": "http://unicorn-rts-mgmt-service.runtime",
+    "rtsscheduler": "http://unicorn-rts-scheduler-service.runtime",
+    "obr": "http://unicorn-investigation-service.runtime",
+    "mls": "http://unicorn-mls-service.runtime-mls:50001",
+    "mlsengine": "http://unicorn-mls-engine-service.runtime-mls:5000",
+    "mlsserve": "http://unicorn-mls-serve-service.runtime-mls:6000",
+    "dis": "http://unicorn-dis-service.runtime-mls:20009",
+    "dos": "http://unicorn-dos-service.runtime-mls:20008",
+    "rps": "http://unicorn-report-service.runtime",
+    "graph": "http://unicorn-graph-service.runtime:10008"
+}

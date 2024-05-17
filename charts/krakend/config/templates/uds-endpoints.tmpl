@@ -1,0 +1,264 @@
+{
+    "endpoint": "/uds/api/{param_1}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/uds/api/{param_1}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .uds }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy",
+        "projectIds"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/uds/api/{param_1}/{param_2}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .uds }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy",
+        "excludeRefList",
+        "compositionIds"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .uds }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "GET",
+    "output_encoding": "no-op",
+     "input_query_strings": [
+        "entityType"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .uds }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .uds }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .uds }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}/{param_7}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}/{param_7}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .uds }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/uds/api/{param_1}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .uds }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/uds/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .uds }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .uds }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .uds }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/uds/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .uds }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

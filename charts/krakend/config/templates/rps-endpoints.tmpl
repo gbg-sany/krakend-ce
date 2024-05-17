@@ -1,0 +1,204 @@
+{
+    "endpoint": "/rps/api/{param_1}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rps/api/{param_1}/{param_2}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rps/api/{param_1}/{param_2}/{param_3}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "output",
+        "outputType"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rps/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+ {
+     "endpoint": "/rps/api/{param_1}",
+     "method": "POST",
+     "output_encoding": "no-op",
+     "input_headers": [
+         "Cookie",
+         "Content-Type",
+         "X-XSRF-TOKEN"
+     ],
+     "backend": [
+         {
+             "url_pattern": "/rps/api/{param_1}",
+             "encoding": "no-op",
+             "method": "POST",
+             "host": [
+                 "{{ .rps }}"
+             ],
+             "disable_host_sanitize": false
+         }
+     ]
+ },
+ {
+     "endpoint": "/rps/api/{param_1}/{param_2}",
+     "method": "POST",
+     "output_encoding": "no-op",
+     "input_query_strings": [
+         "output",
+         "outputType"
+     ],
+     "input_headers": [
+         "Cookie",
+         "Content-Type",
+         "X-XSRF-TOKEN"
+     ],
+     "backend": [
+         {
+             "url_pattern": "/rps/api/{param_1}/{param_2}",
+             "encoding": "no-op",
+             "method": "POST",
+             "host": [
+                 "{{ .rps }}"
+             ],
+             "disable_host_sanitize": false
+         }
+     ]
+ },
+{
+    "endpoint": "/rps/api/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Authorization",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rps/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Authorization",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rps/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "startDateTime",
+        "endDateTime"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Authorization",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rps/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rps }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

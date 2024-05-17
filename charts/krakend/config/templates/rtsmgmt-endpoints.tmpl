@@ -1,0 +1,202 @@
+{
+    "endpoint": "/rts-mgmt/api/{param_1}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}/{param_2}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "name",
+        "slug",
+        "id",
+        "envId"
+    ],
+    "input_headers": [
+        "Cookie",
+        "x-org-id",
+        "x-env-id"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/rts-mgmt/api/{param_1}/{param_2}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .rtsmgmt }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy",
+        "searchParams"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "skip",
+        "take",
+        "sortBy",
+        "id"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "file",
+        "version",
+        "description"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "key",
+        "value"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "key",
+        "value",
+        "id"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-mgmt/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsmgmt }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

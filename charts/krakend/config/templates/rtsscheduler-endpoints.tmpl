@@ -1,0 +1,123 @@
+{
+    "endpoint": "/rts-scheduler/api/{param_1}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "pageNumber",
+        "pageSize",
+        "sortBy",
+        "search"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-scheduler/api/{param_1}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rtsscheduler }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-scheduler/api/{param_1}/{param_2}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/rts-scheduler/api/{param_1}/{param_2}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .rtsscheduler }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-scheduler/api/{param_1}/{param_2}/{param_3}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-scheduler/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .rtsscheduler }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-scheduler/api/{param_1}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-scheduler/api/{param_1}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsscheduler }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-scheduler/api/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-scheduler/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsscheduler }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/rts-scheduler/api/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/rts-scheduler/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .rtsscheduler }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "krakend.fullname" . }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+  labels:
+    {{- include "krakend.labels" . | nindent 4 }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount | default 1 }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "krakend.selectorLabels" . | nindent 6 }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "krakend.selectorLabels" . | nindent 8 }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "krakend.fullname" . }}-configmap{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+        - name: settings
+          configMap:
+            name: {{ template "krakend.fullname" . }}-settings-configmap{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+        - name: templates
+          configMap:
+            name: {{ template "krakend.fullname" . }}-templates-configmap{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+        {{- if .Values.addlVolumes }}
+        {{- toYaml .Values.addlVolumes | nindent 8 }}
+        {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/krakend/config
+            - name: settings
+              mountPath: /etc/krakend/settings
+            - name: templates
+              mountPath: /etc/krakend/templates
+            {{- if .Values.addlVolumeMounts }}
+            {{- toYaml .Values.addlVolumeMounts | nindent 12 }}
+            {{- end }}
+          args: [ "run", "-c", "/etc/krakend/config/krakend.json", "-p", "8080"]
+          env:
+          - name: FC_ENABLE
+            value: "1"
+          - name: FC_SETTINGS
+            value: "/etc/krakend/settings"
+          - name: FC_TEMPLATES
+            value: "/etc/krakend/templates"
+            {{- if .Values.env }}
+            {{- toYaml .Values.env | nindent 12 }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: {{ .Values.kubernetes.readinessFailureThreshold | default 2 }}
+            httpGet:
+              path: {{ .Values.kubernetes.httpReadinessPath | default "/__health" }}
+              port: http
+            initialDelaySeconds: {{ .Values.kubernetes.readinessDelaySecs | default 1 }}
+            periodSeconds: {{ .Values.kubernetes.readinessPeriodSecs | default 30 }}
+            successThreshold: {{ .Values.kubernetes.readinessSuccessThreshold | default 1 }}
+            timeoutSeconds:  {{ .Values.kubernetes.readinessTimeoutSecs | default 2 }}
+          livenessProbe:
+            failureThreshold: {{ .Values.kubernetes.livenessFailureThreshold | default 2 }}
+            httpGet:
+              path: {{ .Values.kubernetes.httpLivenessPath | default "/__health" }}
+              port: http
+            initialDelaySeconds: {{ .Values.kubernetes.livenessDelaySecs | default 1 }}
+            periodSeconds: {{ .Values.kubernetes.livenessPeriodSecs | default 30 }}
+            successThreshold: {{ .Values.kubernetes.livenessSuccessThreshold | default 1 }}
+            timeoutSeconds:  {{ .Values.kubernetes.livenessTimeoutSecs | default 5 }}
+          startupProbe:
+            failureThreshold: {{ .Values.kubernetes.startupFailureThreshold | default 12 }}
+            httpGet:
+              path: {{ .Values.kubernetes.httpStartupPath | default "/__health" }}
+              port: http
+            initialDelaySeconds: {{ .Values.kubernetes.startupDelaySecs | default 1 }}
+            periodSeconds: {{ .Values.kubernetes.startupPeriodSecs | default 5 }}
+            successThreshold: {{ .Values.kubernetes.startupSuccessThreshold | default 1 }}
+            timeoutSeconds:  {{ .Values.kubernetes.startupTimeoutSecs | default 1 }}
+          {{ if .Values.resources -}}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{ else -}}
+          resources: {}
+            # limits:
+            #   cpu: {{ .Values.kubernetes.resourcesLimitsCpu | default "300m" }}
+            #   memory: {{ .Values.kubernetes.resourcesLimitsMemory | default "512Mi" }}
+            # requests:
+            #   cpu: {{ .Values.kubernetes.resourcesRequestsCpu | default "100m" }}
+            #   memory: {{ .Values.kubernetes.resourcesRequestsMemory | default "128Mi" }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- tpl (toYaml  .Values.topologySpreadConstraints) . | nindent 8 }}
+      {{- end }}

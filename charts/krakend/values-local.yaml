@@ -1,0 +1,26 @@
+imagePullSecrets:
+  - name: azure-acr-secret
+extraConfig: |
+  {
+    "security/cors": {
+        "allow_origins": [
+            "http://localhost:4200"
+        ],
+        "allow_methods": [
+            "GET",
+            "POST"
+        ],
+        "expose_headers": [
+            "Content-Length",
+            "Content-Type"
+        ],
+        "allow_headers": [
+            "Accept-Language",
+            "X-Env-Id",
+            "X-Org-Id"
+        ],
+        "max_age": "12h",
+        "allow_credentials": true,
+        "debug": false
+    }
+  }

@@ -1,0 +1,137 @@
+{
+    "endpoint": "/graph/api/{param_1}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "org",
+        "env"
+    ],
+    "input_headers": [
+      "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/graph/api/{param_1}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .graph }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/graph/api/{param_1}/{param_2}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "org",
+        "env"
+    ],
+    "input_headers": [
+      "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/graph/api/{param_1}/{param_2}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .graph }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/graph/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+      "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/graph/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .graph }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/graph/api/{param_1}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "x-org-id",
+        "x-env-id",
+        "x-ou-id",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/graph/api/{param_1}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .graph }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/graph/api/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "x-org-id",
+        "x-env-id",
+        "x-ou-id",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/graph/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .graph }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/graph/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "x-org-id",
+        "x-env-id",
+        "x-ou-id",
+        "Authorization"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/graph/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .graph }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

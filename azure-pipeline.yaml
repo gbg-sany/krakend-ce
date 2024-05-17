@@ -1,0 +1,180 @@
+trigger:
+  - main
+  - release/*
+
+pr: none
+
+parameters:
+  - name: goVersion
+    displayName: Go Version
+    type: string
+    default: 1.22.2
+  - name: alpineVersion
+    displayName: Alpine Version
+    type: string
+    default: 3.18
+  - name: environment
+    type: string
+    default: dev
+    values:
+      - dev
+  - name: namespace
+    type: string
+    default: dmz
+
+variables:
+  - group: GBG Azure Unicorn FCS ACR
+  - group: GBG Azure Unicorn Project SSL VPN
+
+  - name: containerRegistryServiceConnection
+    value: AzDO-Unicorn-DockerRegistry-FCS
+  - name: helmArtefact
+    value: unicorn-krakend
+  - name: helmPath
+    value: charts/krakend
+  - name: helmReleaseName
+    value: unicorn-krakend
+  - name: azureSubscriptionEndpoint
+    value: Azure Resource Manager - Unicorn
+  - name: isMain
+    value: ${{eq(variables['Build.SourceBranch'], 'refs/heads/main')}}
+
+resources:
+  repositories:
+    - repository: unicorn-ado-pipelines
+      type: github
+      endpoint: AzDO-Unicorn-GitHub-PAT-MRV
+      name: gbgplc-internal/unicorn-ado-pipelines
+      ref: rapidash
+    - repository: templates
+      type: github
+      endpoint: AzDO-Unicorn-GitHub-PAT-MRV
+      name: gbgplc-internal/devops-pipeline-templates-ado
+      ref: refs/heads/main
+
+stages:
+  - stage: build_deploy_app
+    displayName: Build Krakend Plugins
+    jobs:
+      - job: calculateVersion
+        displayName: Calculate version number using GitVersion
+        steps:
+          - checkout: self
+            fetchDepth: 0
+
+          - task: gitversion/setup@0
+            displayName: Install GitVersion
+            inputs:
+              versionSpec: '5.x'
+
+          - task: gitversion/execute@0
+            displayName: Determine Version
+            name: Version
+
+          - script: |
+              echo Major: $(GitVersion.Major)
+              echo Minor: $(GitVersion.Minor)
+              echo Patch: $(GitVersion.Patch)
+              echo PreReleaseTag: $(GitVersion.PreReleaseTag)
+              echo PreReleaseTagWithDash: $(GitVersion.PreReleaseTagWithDash)
+              echo PreReleaseLabel: $(GitVersion.PreReleaseLabel)
+              echo PreReleaseNumber: $(GitVersion.PreReleaseNumber)
+              echo WeightedPreReleaseNumber: $(GitVersion.WeightedPreReleaseNumber)
+              echo BuildMetaData: $(GitVersion.BuildMetaData)
+              echo BuildMetaDataPadded: $(GitVersion.BuildMetaDataPadded)
+              echo FullBuildMetaData: $(GitVersion.FullBuildMetaData)
+              echo MajorMinorPatch: $(GitVersion.MajorMinorPatch)
+              echo SemVer: $(GitVersion.SemVer)
+              echo LegacySemVer: $(GitVersion.LegacySemVer)
+              echo LegacySemVerPadded: $(GitVersion.LegacySemVerPadded)
+              echo AssemblySemVer: $(GitVersion.AssemblySemVer)
+              echo AssemblySemFileVer: $(GitVersion.AssemblySemFileVer)
+              echo FullSemVer: $(GitVersion.FullSemVer)
+              echo InformationalVersion: $(GitVersion.InformationalVersion)
+              echo BranchName: $(GitVersion.BranchName)
+              echo EscapedBranchName: $(GitVersion.EscapedBranchName)
+              echo Sha: $(GitVersion.Sha)
+              echo ShortSha: $(GitVersion.ShortSha)
+              echo NuGetVersionV2: $(GitVersion.NuGetVersionV2)
+              echo NuGetVersion: $(GitVersion.NuGetVersion)
+              echo NuGetPreReleaseTagV2: $(GitVersion.NuGetPreReleaseTagV2)
+              echo NuGetPreReleaseTag: $(GitVersion.NuGetPreReleaseTag)
+              echo VersionSourceSha: $(GitVersion.VersionSourceSha)
+              echo CommitsSinceVersionSource: $(GitVersion.CommitsSinceVersionSource)
+              echo CommitsSinceVersionSourcePadded: $(GitVersion.CommitsSinceVersionSourcePadded)
+              echo UncommittedChanges: $(GitVersion.UncommittedChanges)
+              echo CommitDate: $(GitVersion.CommitDate)
+
+      - job: build
+        displayName: Go Build & Docker Push
+        dependsOn: calculateVersion
+        variables:
+          CGO_ENABLED: 0
+          Ver.MajorMinorPatch: $[ dependencies.CalculateVersion.outputs['Version.GitVersion.MajorMinorPatch'] ]
+          Ver.BuildMetaData: $[ dependencies.CalculateVersion.outputs['Version.GitVersion.BuildMetaData'] ]
+          Ver.FullVer: $(Ver.MajorMinorPatch)-$(Ver.BuildMetaData)
+        steps:
+          - bash: |
+              sed -i 's|{image.tag}|'$(Ver.FullVer)'|g' $(helmPath)/values.yaml
+              cat $(helmPath)/values.yaml
+            displayName: Replacing image tag for chart
+          
+          - task: GoTool@0
+            inputs:
+              version: $(goVersion)
+          
+          - task: DockerInstaller@0
+            inputs:
+              dockerVersion: '17.09.0-ce'
+
+          - bash: |
+              docker build --no-cache --pull --build-arg GOLANG_VERSION=$(goVersion) --build-arg ALPINE_VERSION=$(alpineVersion) .
+            displayName: Generate Unicorn Krakend
+
+          - task: Docker@2
+            displayName: Build and Push docker image for Unicorn Krakend
+            inputs:
+              command: buildAndPush
+              containerRegistry: ${{ variables.containerRegistryServiceConnection }}
+              dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+              repository: unicorn/$(helmArtefact)
+              tags: |
+                $(Ver.FullVer)
+
+          - task: HelmInstaller@1
+            displayName: Install latest Helm
+            inputs:
+              helmVersionToInstall: 3.12.3
+
+          - template: pipelines/templates/steps/build/build-helm-helm_upload-1.yml@unicorn-ado-pipelines
+            parameters:
+              helmRepoUserName: $(HELM_REPO_USERNAME)
+              helmRepoPassword: $(HELM_REPO_PASSOWRD)
+              helmRepoRegistry: $(REGISTRY_LOGIN_SERVER)
+              helmReleaseName: $(helmReleaseName)
+              helmPath: $(helmPath)
+              helmChartPath: $(helmPath)
+              helmChartVersion: $(Ver.FullVer)
+
+          - template: pipelines/templates/steps/artefact-publish/artefact_publish-devops-archive-1.yml@templates
+            parameters:
+              copyFilesSourceFolder: $(System.DefaultWorkingDirectory)
+              publishFolder: $(helmArtefact)
+  - ${{ if eq(variables.isMain, true) }}:
+    - template: pipelines/templates/stages/unicorn-module-cd.yml@unicorn-ado-pipelines
+      parameters:
+        dependsOn: build_deploy_app
+        environmentName: ${{ parameters.environment }}
+        stageLabel: ${{ parameters.environment }}
+        helmArtefact: $(helmArtefact)
+        helmReleases:
+          - helmReleaseName: $(helmReleaseName)
+            helmChartPath: $(helmPath)
+        helmValueFile: $(helmPath)/values-${{ parameters.environment }}.yaml
+        kubernetesNamespace: ${{ parameters.namespace }}
+        azureServiceConnection: $(azureSubscriptionEndpoint)
+        azureResourceGroup: rapidashdevelopment-rg
+        kubernetesCluster: rapidashdevelopment-aks
+        helmRepos:
+          - repoName: $(helmReleaseName)
+            repoPath: $(helmPath)

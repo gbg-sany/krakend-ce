@@ -1,0 +1,44 @@
+{
+    "endpoint": "/mls-engine",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "x-org-id",
+        "x-env-id"
+    ],
+    "backend": [
+        {
+            "url_pattern": "",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .mlsengine}}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/mls-engine/{param_1}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN",
+          "x-org-id",
+          "x-env-id"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/{param_1}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .mlsengine}}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

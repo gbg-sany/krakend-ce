@@ -1,0 +1,77 @@
+{
+    "endpoint": "/mls-serve",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "x-org-id",
+        "x-env-id"
+    ],
+    "input_query_strings": [
+        "org",
+        "env"
+    ],
+    "backend": [
+        {
+            "url_pattern": "",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .mlsserve }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/mls-serve/{param_1}/{param_2}/{param_3}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "x-org-id",
+        "x-env-id"
+    ],
+    "input_query_strings": [
+        "org",
+        "env"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .mlsserve }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/mls-serve/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN",
+        "x-org-id",
+        "x-env-id"
+    ],
+    "input_query_strings": [
+        "org",
+        "env"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .mlsserve }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

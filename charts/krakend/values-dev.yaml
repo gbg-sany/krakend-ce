@@ -1,0 +1,20 @@
+image:
+  pullPolicy: Always
+imagePullSecrets:
+  - name: azure-acr-secret
+krakendJson: |
+  {
+    "version": 3,
+    "plugin": {
+      "pattern": ".so",
+      "folder": "./plugins/"
+    },
+    "extra_config": {{ template "extraConfig.tmpl" }},
+    "timeout": "600000ms",
+    "cache_ttl": "300s",
+    "name": "Unicorn-Gateway",
+    "output_encoding": "no-op",
+    "endpoints": [
+      {{ template "endpoints.tmpl" .url }}
+    ]
+  }

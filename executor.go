@@ -215,7 +215,7 @@ func (e *ExecutorBuilder) NewCmdExecutor(ctx context.Context) cmd.Executor {
 				Health: (<-chan string)(agentPing),
 			}),
 			ProxyFactory:   pf,
-			Middlewares:    e.Middlewares,
+			Middlewares:    append(e.Middlewares, Middleware(logger, cfg)),
 			Logger:         logger,
 			HandlerFactory: handlerF,
 			RunServer:      runServerChain,

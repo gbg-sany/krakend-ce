@@ -1,0 +1,476 @@
+{
+    "endpoint": "/obr/api/{param_1}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "feature",
+        "code",
+        "requestId"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}",
+            "encoding": "no-op",
+            "method": "GET",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "path",
+        "id",
+        "slug",
+        "url"
+    ],
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/obr/api/{param_1}/{param_2}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .obr }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .obr }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .obr }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .obr }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .obr }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}/{param_7}",
+    "method": "GET",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie"
+    ],
+    "backend": [
+        {
+        "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}/{param_7}",
+        "encoding": "no-op",
+        "method": "GET",
+        "host": [
+            "{{ .obr }}"
+        ],
+        "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "documentTemplateDto",
+        "attachment"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "eventVersion",
+        "noteContent",
+        "attachment",
+        "investigationLogIdToClone"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}/{param_7}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}/{param_5}/{param_6}/{param_7}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}",
+    "method": "DELETE",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "code",
+        "feature"
+    ],
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}",
+            "encoding": "no-op",
+            "method": "DELETE",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}",
+    "method": "DELETE",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "DELETE",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}",
+    "method": "DELETE",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "input_query_strings": [
+        "eventVersion"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "DELETE",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "DELETE",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "DELETE",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}",
+    "method": "PUT",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}",
+            "encoding": "no-op",
+            "method": "PUT",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}",
+    "method": "PUT",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "PUT",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}",
+    "method": "PUT",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "PUT",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+    "method": "PUT",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/obr/api/{param_1}/{param_2}/{param_3}/{param_4}",
+            "encoding": "no-op",
+            "method": "PUT",
+            "host": [
+                "{{ .obr }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

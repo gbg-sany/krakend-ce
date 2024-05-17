@@ -1,0 +1,42 @@
+{
+    "endpoint": "/unicorn-dis/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .dis }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/unicorn-dis/{param_1}/{param_2}/{param_3}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Cookie",
+        "Content-Type",
+        "X-XSRF-TOKEN"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/{param_1}/{param_2}/{param_3}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .dis }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

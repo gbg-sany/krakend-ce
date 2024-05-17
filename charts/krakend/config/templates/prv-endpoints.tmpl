@@ -1,0 +1,63 @@
+{
+    "endpoint": "/provisioning/api/apps/microservice",
+    "method": "PUT",
+    "output_encoding": "no-op",
+    "input_query_strings": [
+        "service"
+    ],
+    "input_headers": [
+        "Authorization",
+        "Content-Type"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/provisioning/api/apps/microservice",
+            "encoding": "no-op",
+            "method": "PUT",
+            "host": [
+                "{{ .prv }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/provisioning/api/{param_1}/{param_2}",
+    "method": "POST",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Content-Type",
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/provisioning/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "POST",
+            "host": [
+                "{{ .prv }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+},
+{
+    "endpoint": "/provisioning/api/{param_1}/{param_2}",
+    "method": "DELETE",
+    "output_encoding": "no-op",
+    "input_headers": [
+        "Content-Type",
+        "Cookie"
+    ],
+    "backend": [
+        {
+            "url_pattern": "/provisioning/api/{param_1}/{param_2}",
+            "encoding": "no-op",
+            "method": "DELETE",
+            "host": [
+                "{{ .prv }}"
+            ],
+            "disable_host_sanitize": false
+        }
+    ]
+}

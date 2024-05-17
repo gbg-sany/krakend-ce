@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "krakend.fullname" . }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+  labels:
+    {{- include "krakend.labels" . | nindent 4 }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "krakend.selectorLabels" . | nindent 4 }}{{ if .Values.isAppendVersion }}-{{ regexReplaceAll "\\W+" .Chart.Version "-" }} {{ end }}
