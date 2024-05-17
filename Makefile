@@ -6,7 +6,7 @@
 
 BIN_NAME :=krakend
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
-VERSION := 2.6.2-unicorn
+VERSION := 2.6.2-unicorn-r1
 SCHEMA_VERSION := $(shell echo "${VERSION}" | cut -d '.' -f 1,2)
 GIT_COMMIT := $(shell git rev-parse --short=7 HEAD)
 PKGNAME := krakend
@@ -71,7 +71,7 @@ build_on_docker: docker-builder-linux
 
 # Build the container using the Dockerfile (alpine)
 docker:
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t devopsfaith/krakend:${VERSION} .
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t fcsregistry.azurecr.io/unicorn/unicorn-krakend:${VERSION} .
 
 docker-builder:
 	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t krakend/builder:${VERSION} -f Dockerfile-builder .

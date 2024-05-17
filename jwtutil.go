@@ -45,11 +45,11 @@ var (
 var jwtconfig = pluginConfig{}
 
 func Middleware(log logging.Logger, c config.ServiceConfig) gin.HandlerFunc {
-	extraConfig := c.ExtraConfig[pluginName].(map[string]interface{})
-	jwtconfig.VaultUrl = extraConfig["vaultUrl"].(string)
-	jwtconfig.VaultToken = extraConfig["vaultToken"].(string)
-	jwtconfig.VaultRoleName = extraConfig["vaultRoleName"].(string)
-	jwtconfig.VaultTokenPath = extraConfig["vaultTokenPath"].(string)
+	// extraConfig := c.ExtraConfig[pluginName].(map[string]interface{})
+	jwtconfig.VaultUrl = "http://third-party-hashivault-active.service:8200" // extraConfig["vaultUrl"].(string)
+	// jwtconfig.VaultToken = extraConfig["vaultToken"].(string)
+	jwtconfig.VaultRoleName = "unicorn" // extraConfig["vaultRoleName"].(string)
+	// jwtconfig.VaultTokenPath = extraConfig["vaultTokenPath"].(string)
 	return gin.HandlerFunc(func(c *gin.Context) {
 		req := c.Request
 		w := c.Writer
