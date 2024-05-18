@@ -18,8 +18,6 @@ import (
 	"github.com/luraproject/lura/v2/logging"
 )
 
-var pluginName = "krakend-jwt-validation"
-
 type pluginConfig struct {
 	VaultUrl       string
 	VaultToken     string
@@ -45,11 +43,12 @@ var (
 var jwtconfig = pluginConfig{}
 
 func Middleware(log logging.Logger, c config.ServiceConfig) gin.HandlerFunc {
-	// extraConfig := c.ExtraConfig[pluginName].(map[string]interface{})
-	jwtconfig.VaultUrl = "http://third-party-hashivault-active.service:8200" // extraConfig["vaultUrl"].(string)
-	// jwtconfig.VaultToken = extraConfig["vaultToken"].(string)
-	jwtconfig.VaultRoleName = "unicorn" // extraConfig["vaultRoleName"].(string)
-	// jwtconfig.VaultTokenPath = extraConfig["vaultTokenPath"].(string)
+	middlewaresConfig := c.ExtraConfig["middlewares"].(map[string]interface{})
+	jwtutilConfig := middlewaresConfig["krakend-jwt-validation"].(map[string]interface{})
+	jwtconfig.VaultUrl = getString(jwtutilConfig["vault_url"])
+	jwtconfig.VaultToken = getString(jwtutilConfig["vault_token"])
+	jwtconfig.VaultRoleName = getString(jwtutilConfig["vault_role_name"])
+	jwtconfig.VaultTokenPath = getString(jwtutilConfig["vault_token_path"])
 	return gin.HandlerFunc(func(c *gin.Context) {
 		req := c.Request
 		w := c.Writer
@@ -97,6 +96,16 @@ func Middleware(log logging.Logger, c config.ServiceConfig) gin.HandlerFunc {
 			c.Next()
 		}
 	})
+}
+
+func getString(i interface{}) string {
+	if i == nil {
+		return ""
+	}
+	if s, ok := i.(string); ok {
+		return s
+	}
+	return ""
 }
 
 func (c pluginConfig) Parse(token string) (jwtToken *jwt.Token, err error) {

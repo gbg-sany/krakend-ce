@@ -44,8 +44,7 @@ data:
 {{- end }}
   extraConfig.tmpl: |-
     {
-      "plugin/http-server": {
-        "name": ["krakend-jwt-validation"],
+      "middlewares": {
         "krakend-jwt-validation": {
           "vault_url": "{{ .Values.vault.url }}",
           "vault_role_name": "{{ .Values.vault.roleName }}"
